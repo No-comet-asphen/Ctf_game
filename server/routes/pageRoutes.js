@@ -4,23 +4,26 @@ const fs = require('fs');
 const config = require('../config');
 
 const router = express.Router();
-const viewsDir = path.join(__dirname, '..', '..', 'views');
+
+// Use path.resolve to reliably locate views directory in serverless builds
+const viewsDir = path.resolve(__dirname, '../../views');
 
 /**
  * Helper to serve HTML with injected config values
  */
 function serveHtmlView(fileName, req, res) {
   const filePath = path.join(viewsDir, fileName);
+
   fs.readFile(filePath, 'utf8', (err, content) => {
     if (err) {
-      console.error(`[PAGE ROUTE ERROR] Failed to load ${fileName}:`, err);
-      return res.status(500).send('Error loading page.');
+      console.error(`[PAGE ROUTE ERROR] Failed to load ${fileName} at path ${filePath}:`, err);
+      return res.status(500).send(`Server Error: Could not load view template (${fileName}).`);
     }
 
     const token = req.token || req.query.token || req.cookies?.ctf_token || '';
     const rendered = content
-      .replace(/{{BASE_PATH}}/g, config.BASE_PATH)
-      .replace(/{{MAIN_SITE_URL}}/g, config.MAIN_SITE_URL)
+      .replace(/{{BASE_PATH}}/g, config.BASE_PATH || '')
+      .replace(/{{MAIN_SITE_URL}}/g, config.MAIN_SITE_URL || '')
       .replace(/{{TOKEN}}/g, token);
 
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
