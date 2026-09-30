@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IronVault Bank – Security & Audit Help</title>
+  <link rel="stylesheet" href="{{BASE_PATH}}/public/css/common.css">
+  <link rel="stylesheet" href="{{BASE_PATH}}/public/css/bank.css">
+  <script>
+    window.__CTF_CONFIG__ = {
+      basePath: "{{BASE_PATH}}",
+      mainSiteUrl: "{{MAIN_SITE_URL}}",
+      token: "{{TOKEN}}"
+    };
+  </script>
+</head>
+<body>
+
+  <!-- Corporate Bank Header -->
+  <header class="bank-header">
+    <div class="container">
+      <div class="bank-nav-wrap">
+        <a href="{{BASE_PATH}}/bank/dashboard" class="bank-logo">
+          <div class="bank-seal">IV</div>
+          <div class="bank-name">
+            <h2>IronVault Bank</h2>
+            <span>Institutional Wealth & Reserves</span>
+          </div>
+        </a>
+
+        <nav>
+          <ul class="bank-nav-links">
+            <li><a href="{{BASE_PATH}}/bank/teller-login">Teller Portal</a></li>
+            <li><a href="{{BASE_PATH}}/bank/accounts">Accounts</a></li>
+            <li><a href="{{BASE_PATH}}/bank/transfers">Transfers</a></li>
+            <li><a href="{{BASE_PATH}}/bank/dashboard">Dashboard</a></li>
+            <li><a href="{{BASE_PATH}}/bank/audit" class="active">Audit / Help</a></li>
+            <li>
+              <a href="{{BASE_PATH}}" id="returnToConsoleLink" class="console-return-link">
+                ⚡ Return to Heist Console
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Security banner -->
+  <div class="security-banner">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+      <span>INTERNAL COMPLIANCE & PROTOCOL AUDIT // MEMORANDUM ARCHIVE</span>
+      <div>
+        <span>OPERATOR INTEGRITY: <strong id="bankHudLives" style="color: #34d399;">3 / 3</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container bank-page-container">
+    <div style="max-width: 800px; margin: 0 auto;">
+      
+      <div style="margin-bottom: 30px;">
+        <h2 style="font-size: 1.8rem; color: #fff; font-weight: 800;">Information Security Guidelines & Audit Memoranda</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">
+          Mandatory compliance handbook for tellers, branch managers, and systems administrators.
+        </p>
+      </div>
+
+      <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 24px; margin-bottom: 20px;">
+        <h3 style="font-size: 1.1rem; color: var(--gold-light); margin-bottom: 10px;">
+          Memo #882: Legacy Teller Portal Migration
+        </h3>
+        <p style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.6; margin-bottom: 12px;">
+          All branch staff are advised that the Teller Portal is undergoing modernization. The temporary blacklist filter currently purges comment markers (<code>--</code>, <code>;</code>, <code>/*</code>) from the input stream. Be reminded that dev-mode error logging has inadvertently left live SQL queries visible in the debug terminal. A formal database migration is scheduled next quarter.
+        </p>
+        <span class="badge badge-gold">Security Level: Confidential</span>
+      </div>
+
+      <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 24px; margin-bottom: 20px;">
+        <h3 style="font-size: 1.1rem; color: var(--gold-light); margin-bottom: 10px;">
+          Memo #884: Wire Transfer Client Fraud Guard
+        </h3>
+        <p style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.6; margin-bottom: 12px;">
+          Branch workstations running legacy browsers may encounter disabled buttons or transparent fraud shields over settlement forms. Notice: Operators must never run automated bypass scripts; all authorized overrides generate Caesar-protected reference codes for manual reconciliation.
+        </p>
+        <span class="badge badge-blue">Department: Treasury Clearing</span>
+      </div>
+
+      <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 24px;">
+        <h3 style="font-size: 1.1rem; color: var(--gold-light); margin-bottom: 10px;">
+          Memo #889: REST API Response Header Protocol
+        </h3>
+        <p style="font-size: 0.9rem; color: #cbd5e1; line-height: 1.6; margin-bottom: 12px;">
+          Core banking microservices transmit operational audit identifiers within custom HTTP response headers (<code>X-Audit-Code</code>) rather than standard JSON payloads. In simulated cache-miss environments, audit verification headers are attached exclusively during secondary balance verifications.
+        </p>
+        <span class="badge badge-green">Compliance: ISO-27001 Verified</span>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="{{BASE_PATH}}/public/js/bank-nav.js"></script>
+</body>
+</html>

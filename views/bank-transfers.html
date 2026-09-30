@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IronVault Bank – Institutional Transfers</title>
+  <link rel="stylesheet" href="{{BASE_PATH}}/public/css/common.css">
+  <link rel="stylesheet" href="{{BASE_PATH}}/public/css/bank.css">
+  <script>
+    window.__CTF_CONFIG__ = {
+      basePath: "{{BASE_PATH}}",
+      mainSiteUrl: "{{MAIN_SITE_URL}}",
+      token: "{{TOKEN}}"
+    };
+  </script>
+</head>
+<body>
+
+  <!-- Corporate Bank Header -->
+  <header class="bank-header">
+    <div class="container">
+      <div class="bank-nav-wrap">
+        <a href="{{BASE_PATH}}/bank/dashboard" class="bank-logo">
+          <div class="bank-seal">IV</div>
+          <div class="bank-name">
+            <h2>IronVault Bank</h2>
+            <span>Institutional Wealth & Reserves</span>
+          </div>
+        </a>
+
+        <nav>
+          <ul class="bank-nav-links">
+            <li><a href="{{BASE_PATH}}/bank/teller-login">Teller Portal</a></li>
+            <li><a href="{{BASE_PATH}}/bank/accounts">Accounts</a></li>
+            <li><a href="{{BASE_PATH}}/bank/transfers" class="active">Transfers</a></li>
+            <li><a href="{{BASE_PATH}}/bank/dashboard">Dashboard</a></li>
+            <li><a href="{{BASE_PATH}}/bank/audit">Audit / Help</a></li>
+            <li>
+              <a href="{{BASE_PATH}}" id="returnToConsoleLink" class="console-return-link">
+                ⚡ Return to Heist Console
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Security banner -->
+  <div class="security-banner">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+      <span>SETTLEMENT CLEARINGHOUSE // SWIFT WIRE INTERFACE</span>
+      <div>
+        <span>OPERATOR INTEGRITY: <strong id="bankHudLives" style="color: #34d399;">3 / 3</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Content -->
+  <div class="container bank-page-container">
+    <div class="portal-title-area">
+      <div class="badge badge-gold" style="margin-bottom: 12px;">Sector 02 Challenge</div>
+      <h3 style="font-size: 1.75rem;">High-Value Reserve Wire Transfer</h3>
+      <p>Initiate real-time interbank gross settlement from institutional reserve vaults.</p>
+    </div>
+
+    <!-- Transfer Form with DOM Security Barriers -->
+    <div class="transfer-form-wrapper">
+      
+      <!-- PUZZLE 2 BARRIER 1: Transparent fraud-shield overlay intercepting clicks -->
+      <div class="fraud-shield" id="fraudShield" title="Fraud Shield Security Overlay"></div>
+
+      <form id="transferForm">
+        <div class="form-group">
+          <label class="form-label" for="fromAccount">Source Vault Reserve</label>
+          <select id="fromAccount" class="form-input" style="background: var(--bg-input);">
+            <option value="1001">Vault Reserve #1001 (Available Balance: $4,213.50)</option>
+            <option value="2044">Liquidity Pool #2044 ($1,250,000.00)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="toAccount">Target Account / IBAN</label>
+          <input 
+            type="text" 
+            id="toAccount" 
+            class="form-input code-mono" 
+            value="IVB-OFFSHORE-9941-X" 
+            placeholder="IBAN / Account Number"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="amount">Wire Amount ($ USD)</label>
+          <input 
+            type="text" 
+            id="amount" 
+            class="form-input" 
+            value="4,213.50" 
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="transferDesc">Routing Purpose</label>
+          <input 
+            type="text" 
+            id="transferDesc" 
+            class="form-input" 
+            value="Vault Liquidity Extraction" 
+          />
+        </div>
+
+        <!-- PUZZLE 2 BARRIER 2: Button disabled attribute -->
+        <button type="submit" id="transferBtn" class="btn btn-gold" style="width: 100%;" disabled>
+          Execute Reserve Transfer
+        </button>
+      </form>
+    </div>
+
+    <!-- PUZZLE 2 TRAP: Bright "Unlock Transfers" button -->
+    <div style="text-align: center; margin-top: 32px; max-width: 500px; margin-left: auto; margin-right: auto;">
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">
+        Transfer controls frozen or unresponsive?
+      </p>
+      <button type="button" id="trapUnlockBtn" class="btn trap-unlock-btn" style="width: 100%;">
+        ⚡ Quick Bypass: Automated Interface Unlock
+      </button>
+      <span style="font-size: 0.75rem; color: #f87171; display: block; margin-top: 6px;">
+        ⚠️ Warning: Automated unlock attempts are screened by IronVault behavioral detection algorithms.
+      </span>
+    </div>
+
+  </div>
+
+  <!-- Success Modal revealing Caesar Token -->
+  <div class="modal-backdrop" id="transferSuccessModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" style="color: #34d399;">✓ Transfer Clearance Authorized</h3>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.95rem; color: #e2e8f0; margin-bottom: 14px;">
+          The fraud prevention barrier was successfully bypassed. The wire transfer has been dispatched to the settlement network.
+        </p>
+        <div style="background: #030712; border: 1px dashed #34d399; padding: 14px; border-radius: var(--radius-sm); text-align: center;">
+          <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase;">
+            Encrypted Wire Authorization Token:
+          </div>
+          <div id="caesarTokenDisplay" style="font-family: var(--font-mono); font-size: 1.35rem; color: #6ee7b7; font-weight: 800; letter-spacing: 2px; user-select: all;">
+            LYE-OHYHO2-5N8
+          </div>
+        </div>
+        <p style="font-size: 0.82rem; color: var(--gold-light); margin-top: 14px;">
+          🔑 <strong>Cryptographic Notice:</strong> This authorization token is protected with a Caesar cipher (shift +3). Shift letters backward (-3) to recover the original plaintext code, then enter it into Sector 02 on the Heist Console!
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-gold" id="modalCloseBtn">
+          Acknowledge & Return
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{BASE_PATH}}/public/js/bank-nav.js"></script>
+  <script src="{{BASE_PATH}}/public/js/transfers.js"></script>
+</body>
+</html>

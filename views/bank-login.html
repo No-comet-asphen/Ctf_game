@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IronVault Bank – Teller Portal Login</title>
+  <link rel="stylesheet" href="{{BASE_PATH}}/public/css/common.css">
+  <link rel="stylesheet" href="{{BASE_PATH}}/public/css/bank.css">
+  <script>
+    window.__CTF_CONFIG__ = {
+      basePath: "{{BASE_PATH}}",
+      mainSiteUrl: "{{MAIN_SITE_URL}}",
+      token: "{{TOKEN}}"
+    };
+  </script>
+</head>
+<body>
+
+  <!-- Corporate Bank Header -->
+  <header class="bank-header">
+    <div class="container">
+      <div class="bank-nav-wrap">
+        <a href="{{BASE_PATH}}/bank/dashboard" class="bank-logo">
+          <div class="bank-seal">IV</div>
+          <div class="bank-name">
+            <h2>IronVault Bank</h2>
+            <span>Institutional Wealth & Reserves</span>
+          </div>
+        </a>
+
+        <nav>
+          <ul class="bank-nav-links">
+            <li><a href="{{BASE_PATH}}/bank/teller-login" class="active">Teller Portal</a></li>
+            <li><a href="{{BASE_PATH}}/bank/accounts">Accounts</a></li>
+            <li><a href="{{BASE_PATH}}/bank/transfers">Transfers</a></li>
+            <li><a href="{{BASE_PATH}}/bank/dashboard">Dashboard</a></li>
+            <li><a href="{{BASE_PATH}}/bank/audit">Audit / Help</a></li>
+            <li>
+              <a href="{{BASE_PATH}}" id="returnToConsoleLink" class="console-return-link">
+                ⚡ Return to Heist Console
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Security banner -->
+  <div class="security-banner">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+      <span>INTERNAL NETWORK GATEWAY // TERMINAL NODE 104-TELLER</span>
+      <div>
+        <span>OPERATOR INTEGRITY: <strong id="bankHudLives" style="color: #34d399;">3 / 3</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Content -->
+  <div class="container bank-page-container">
+    <div class="portal-card">
+      
+      <div class="portal-title-area">
+        <div class="badge badge-gold" style="margin-bottom: 12px;">Sector 01 Challenge</div>
+        <h3>Teller Access Terminal</h3>
+        <p>Restricted to authorized branch tellers and vault custody supervisors.</p>
+      </div>
+
+      <!-- Filter warning banner -->
+      <div class="debug-filter-banner" id="debugFilterBanner">
+        Suspicious characters removed for your security.
+      </div>
+
+      <!-- Teller Login Form -->
+      <form id="tellerLoginForm">
+        <div class="form-group">
+          <label class="form-label" for="tellerUser">Teller ID / Username</label>
+          <input 
+            type="text" 
+            id="tellerUser" 
+            name="username" 
+            class="form-input" 
+            placeholder="e.g. sarah.jenkins or teller-49"
+            required
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="tellerPass">Master Passcode</label>
+          <input 
+            type="password" 
+            id="tellerPass" 
+            name="password" 
+            class="form-input" 
+            placeholder="••••••••••••"
+            required
+            autocomplete="off"
+          />
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <!-- TRAP LINK: Fake Emergency Access -->
+          <a href="#" id="emergencyAccessLink" style="font-size: 0.8rem; color: #f87171; text-decoration: underline;">
+            ⚠️ Emergency Teller Access (Supervisor Override)
+          </a>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Protocol v4.12</span>
+        </div>
+
+        <button type="submit" class="btn btn-gold" style="width: 100%;">
+          Sign In to Teller Desk
+        </button>
+      </form>
+
+      <!-- Successful Injection Memo Card -->
+      <div class="teller-success-memo" id="tellerSuccessMemo">
+        <h4 style="color: #34d399; margin-bottom: 6px;">✓ Head Teller Clearance Granted</h4>
+        <p style="font-size: 0.9rem; color: #e2e8f0;">
+          Welcome, Sarah (Head Teller). Audit memo:
+        </p>
+        <div class="memo-code-highlight" id="memoCodeText">
+          SVZCLUxFVkVMMS03UTI=
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 8px;">
+          Copy this encoded memo, decode it, and enter it into the Sector 01 card on your Heist Console!
+        </p>
+      </div>
+
+      <!-- Debug Console (Dev Mode) -->
+      <div class="debug-console-wrap">
+        <div class="debug-console-header">
+          <span style="font-size: 0.85rem; font-weight: 700; color: #fff;">Debug Console</span>
+          <span class="debug-badge">Dev Mode Active</span>
+        </div>
+        <div class="debug-terminal" id="debugQueryOutput">
+[DEBUG QUERY]: (No failed query recorded yet. Submit credentials to inspect query execution.)
+        </div>
+        <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 6px;">
+          ℹ️ Legacy database connector is currently logging raw SQL query strings on authentication exceptions.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Trap Modal: Emergency Access Override -->
+  <div class="modal-backdrop" id="emergencyModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" style="color: #f87171;">⚠️ Emergency Branch Override</h3>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 16px;">
+          <strong>CAUTION:</strong> Use of emergency override codes triggers an immediate dispatch to central branch security. All actions are logged.
+        </p>
+        <form id="emergencyForm">
+          <div class="form-group">
+            <label class="form-label" for="overrideCodeInput">Admin Override Code:</label>
+            <input 
+              type="text" 
+              id="overrideCodeInput" 
+              class="form-input code-mono" 
+              placeholder="e.g. OVERRIDE-990-ALPHA" 
+              required
+            />
+          </div>
+          <div style="display: flex; gap: 10px; justify-content: flex-end;">
+            <button type="button" class="btn btn-secondary" id="emergencyCancelBtn">Cancel</button>
+            <button type="submit" class="btn btn-danger">Execute Override</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{BASE_PATH}}/public/js/bank-nav.js"></script>
+  <script src="{{BASE_PATH}}/public/js/teller-login.js"></script>
+</body>
+</html>

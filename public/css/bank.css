@@ -1,0 +1,324 @@
+/* ==========================================================================
+   IRONVAULT BANK CORPORATE STYLING (bank.css)
+   Enterprise Private Wealth & Reserve Portal
+   ========================================================================== */
+
+.bank-header {
+  background: #091329;
+  border-bottom: 2px solid var(--gold-primary);
+  padding: 12px 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.bank-nav-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.bank-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.bank-seal {
+  width: 44px;
+  height: 44px;
+  background: var(--gold-gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 900;
+  color: #080e1e;
+  border: 2px solid #fff;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+.bank-name h2 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.bank-name span {
+  font-size: 0.72rem;
+  color: var(--gold-light);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+.bank-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+}
+
+.bank-nav-links a {
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.bank-nav-links a:hover,
+.bank-nav-links a.active {
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--gold-light);
+}
+
+.console-return-link {
+  background: #172554;
+  border: 1px solid var(--gold-primary);
+  color: #fff !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+}
+
+.console-return-link:hover {
+  background: var(--gold-gradient) !important;
+  color: #080e1e !important;
+}
+
+/* Security notice banner */
+.security-banner {
+  background: rgba(14, 165, 233, 0.1);
+  border-bottom: 1px solid rgba(14, 165, 233, 0.3);
+  padding: 8px 0;
+  font-size: 0.8rem;
+  color: var(--accent-cyan);
+  font-family: var(--font-mono);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Bank Page Main Container */
+.bank-page-container {
+  padding: 40px 0 80px;
+}
+
+.portal-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: var(--shadow-card);
+  position: relative;
+}
+
+.portal-title-area {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.portal-title-area h3 {
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.portal-title-area p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* Debug Console (Dev Mode) for Puzzle 1 */
+.debug-console-wrap {
+  margin-top: 32px;
+  border-top: 1px dashed var(--border-color);
+  padding-top: 24px;
+}
+
+.debug-console-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.debug-badge {
+  background: #f59e0b;
+  color: #080e1e;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+
+.debug-terminal {
+  background: #030712;
+  border: 1px solid #1f2937;
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: #10b981;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+  min-height: 50px;
+}
+
+.debug-filter-banner {
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid #f59e0b;
+  color: #fde68a;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 12px;
+  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  display: none;
+}
+
+/* Success Memo Card */
+.teller-success-memo {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid #10b981;
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin-top: 24px;
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.memo-code-highlight {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  background: #030712;
+  border: 1px dashed #10b981;
+  padding: 8px 14px;
+  border-radius: 4px;
+  color: #6ee7b7;
+  letter-spacing: 1.5px;
+  margin-top: 10px;
+  display: inline-block;
+  user-select: all;
+}
+
+/* Puzzle 2: Transfers & Fraud Shield */
+.transfer-form-wrapper {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: var(--shadow-card);
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* Transparent Overlay Blocking Form (Must be deleted in DevTools) */
+.fraud-shield {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.05); /* Nearly transparent */
+  z-index: 50;
+  cursor: not-allowed;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Visual cue only on hover to hint at overlay */
+  transition: backdrop-filter 0.2s;
+}
+
+.fraud-shield:hover {
+  backdrop-filter: blur(1px);
+}
+
+.trap-unlock-btn {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+}
+
+.trap-unlock-btn:hover {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+}
+
+/* Dashboard Styles (Puzzle 3) */
+.balance-display-card {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.balance-amount {
+  font-size: 2.25rem;
+  font-weight: 900;
+  color: var(--gold-light);
+  letter-spacing: 1px;
+}
+
+.network-tip-box {
+  background: rgba(56, 189, 248, 0.1);
+  border-left: 3px solid var(--accent-cyan);
+  padding: 14px 18px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.88rem;
+  color: #e0f2fe;
+  margin-top: 20px;
+}
+
+/* Tables for Accounts & Audit */
+.bank-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.bank-table th {
+  background: var(--bg-secondary);
+  padding: 14px 18px;
+  text-align: left;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.bank-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(35, 53, 96, 0.5);
+  font-size: 0.9rem;
+}
+
+.bank-table tr:last-child td {
+  border-bottom: none;
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IronVault Heist – CTF Round Console</title>
+  <link rel="stylesheet" href="{{BASE_PATH}}/public/css/common.css">
+  <link rel="stylesheet" href="{{BASE_PATH}}/public/css/round.css">
+  <script>
+    window.__CTF_CONFIG__ = {
+      basePath: "{{BASE_PATH}}",
+      mainSiteUrl: "{{MAIN_SITE_URL}}",
+      token: "{{TOKEN}}"
+    };
+  </script>
+</head>
+<body>
+
+  <!-- Site Navigation -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="{{BASE_PATH}}" class="brand-wrap">
+          <div class="brand-icon">⚡</div>
+          <div class="brand-text">
+            <h1>IronVault Heist</h1>
+            <span>CTF Infiltration Console</span>
+          </div>
+        </a>
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div class="badge badge-gold">
+            <span style="color: var(--accent-cyan);">TEAM:</span>&nbsp;<span id="hudTeamName">Authenticating...</span>
+          </div>
+          <div class="badge badge-blue">
+            <span style="color: var(--gold-light);">OPERATOR:</span>&nbsp;<span id="hudPlayerId">Agent</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mission Control Main Area -->
+  <main class="container">
+    <section class="console-hero">
+      
+      <!-- Top HUD Cards -->
+      <div class="mission-hud">
+        <div class="hud-card hud-red">
+          <div class="hud-label">Vault Integrity (Lives)</div>
+          <div class="hud-value">
+            <div class="lives-container" id="hudLives">
+              <!-- Rendered via JS -->
+              <div class="life-pip active">❤️</div>
+              <div class="life-pip active">❤️</div>
+              <div class="life-pip active">❤️</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hud-card hud-gold">
+          <div class="hud-label">Current Heist Bounty</div>
+          <div class="hud-value" id="hudScore">0 PTS</div>
+        </div>
+
+        <div class="hud-card hud-cyan">
+          <div class="hud-label">Operation Stopwatch</div>
+          <div class="hud-value" id="hudTimer" style="font-family: var(--font-mono);">00:00</div>
+        </div>
+
+        <div class="hud-card hud-green">
+          <div class="hud-label">Sectors Breached</div>
+          <div class="hud-value" id="hudSolvedCount">0 / 3</div>
+        </div>
+      </div>
+
+      <!-- Live Mission Terminal Log -->
+      <div class="mission-log-box" id="missionLog">
+        <div class="mission-log-line">
+          <span class="time">[INIT]</span> Connecting to IronVault Secure Subsystems...
+        </div>
+      </div>
+
+      <!-- Puzzles Grid (3 Cards) -->
+      <div class="puzzles-grid" id="puzzlesGrid">
+        <!-- Rendered dynamically by round.js -->
+        <div style="text-align: center; color: var(--text-muted); padding: 40px; grid-column: 1 / -1;">
+          Loading security sectors...
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Mission Summary / Game Over Modal -->
+  <div class="modal-backdrop" id="summaryModal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title" id="summaryTitle">Mission Debrief</h3>
+      </div>
+      <div class="modal-body" id="summaryContent">
+        <!-- Filled by JS -->
+      </div>
+      <div class="modal-footer">
+        <a href="{{MAIN_SITE_URL}}" id="summaryReturnBtn" class="btn btn-gold" style="width: 100%;">
+          Back to Main Event Platform →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Stack -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Client Script -->
+  <script src="{{BASE_PATH}}/public/js/round.js"></script>
+</body>
+</html>

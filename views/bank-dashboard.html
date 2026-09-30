@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IronVault Bank – Institutional Dashboard</title>
+  <link rel="stylesheet" href="{{BASE_PATH}}/public/css/common.css">
+  <link rel="stylesheet" href="{{BASE_PATH}}/public/css/bank.css">
+  <script>
+    window.__CTF_CONFIG__ = {
+      basePath: "{{BASE_PATH}}",
+      mainSiteUrl: "{{MAIN_SITE_URL}}",
+      token: "{{TOKEN}}"
+    };
+  </script>
+</head>
+<body>
+
+  <!-- Corporate Bank Header -->
+  <header class="bank-header">
+    <div class="container">
+      <div class="bank-nav-wrap">
+        <a href="{{BASE_PATH}}/bank/dashboard" class="bank-logo">
+          <div class="bank-seal">IV</div>
+          <div class="bank-name">
+            <h2>IronVault Bank</h2>
+            <span>Institutional Wealth & Reserves</span>
+          </div>
+        </a>
+
+        <nav>
+          <ul class="bank-nav-links">
+            <li><a href="{{BASE_PATH}}/bank/teller-login">Teller Portal</a></li>
+            <li><a href="{{BASE_PATH}}/bank/accounts">Accounts</a></li>
+            <li><a href="{{BASE_PATH}}/bank/transfers">Transfers</a></li>
+            <li><a href="{{BASE_PATH}}/bank/dashboard" class="active">Dashboard</a></li>
+            <li><a href="{{BASE_PATH}}/bank/audit">Audit / Help</a></li>
+            <li>
+              <a href="{{BASE_PATH}}" id="returnToConsoleLink" class="console-return-link">
+                ⚡ Return to Heist Console
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Security banner -->
+  <div class="security-banner">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+      <span>CENTRAL VAULT LEDGER // CUSTODIAL RECONCILIATION NODE</span>
+      <div>
+        <span>OPERATOR INTEGRITY: <strong id="bankHudLives" style="color: #34d399;">3 / 3</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Content -->
+  <div class="container bank-page-container">
+    
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; flex-wrap: wrap; gap: 12px;">
+      <div>
+        <div class="badge badge-gold" style="margin-bottom: 8px;">Sector 03 Challenge</div>
+        <h2 style="font-size: 1.8rem; color: #fff; font-weight: 800;">Vault Custody Dashboard</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">
+          Real-time institutional reserve oversight and balance auditing.
+        </p>
+      </div>
+      <div>
+        <span class="badge badge-green">Ledger Online</span>
+      </div>
+    </div>
+
+    <!-- Active Balance Card -->
+    <div class="balance-display-card">
+      <div>
+        <div style="font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; font-family: var(--font-mono); letter-spacing: 1px;">
+          Primary Reserve Vault (#1001)
+        </div>
+        <div class="balance-amount" id="accountBalanceDisplay">$4,213.50</div>
+        <div id="auditSyncStatus" style="font-size: 0.8rem; color: var(--accent-cyan); font-family: var(--font-mono); margin-top: 4px;">
+          Status: Synchronized with core ledger
+        </div>
+      </div>
+
+      <div>
+        <!-- Balance Refresh Button -->
+        <button type="button" class="btn btn-gold" id="refreshBalanceBtn">
+          🔄 Refresh Balance
+        </button>
+      </div>
+    </div>
+
+    <!-- Network Activity / Sync Log -->
+    <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 20px; margin-bottom: 30px;">
+      <h4 style="font-size: 0.95rem; color: #fff; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;">
+        📡 REST API Network Monitor
+      </h4>
+      <div id="balanceSyncLog" style="background: #050a18; border: 1px solid #1e293b; border-radius: var(--radius-sm); padding: 12px; font-family: var(--font-mono); min-height: 48px;">
+        <div style="font-size: 0.82rem; color: #64748b;">
+          Click "Refresh Balance" above to trigger an API fetch to <code>/api/balance?acct=1001</code>.
+        </div>
+      </div>
+
+      <div class="network-tip-box">
+        💡 <strong>Operator Tip:</strong> The bank's internal audit code travels with the HTTP transaction. Inspect browser DevTools (<code>F12</code> or right-click Inspect) &rarr; <strong>Network</strong> tab &rarr; look for the <code>balance?acct=1001</code> request and examine the <strong>Response Headers</strong>!
+      </div>
+    </div>
+
+    <!-- Recent Transactions Table -->
+    <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 24px;">
+      <h3 style="font-size: 1.15rem; color: #fff; margin-bottom: 16px;">Recent Custodial Clearances</h3>
+      <table class="bank-table">
+        <thead>
+          <tr>
+            <th>Tx ID</th>
+            <th>Timestamp</th>
+            <th>Type</th>
+            <th>Counterparty</th>
+            <th>Amount</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-family: var(--font-mono);">TX-99014</td>
+            <td>Today, 14:22:01</td>
+            <td>Reserve Injection</td>
+            <td>Federal Settlement Desk</td>
+            <td style="color: #34d399; font-weight: 700;">+$500,000.00</td>
+            <td><span class="badge badge-green">Cleared</span></td>
+          </tr>
+          <tr>
+            <td style="font-family: var(--font-mono);">TX-99012</td>
+            <td>Today, 11:05:40</td>
+            <td>Liquidity Rebalance</td>
+            <td>IronVault Pool #2044</td>
+            <td style="color: #f87171; font-weight: 700;">-$495,786.50</td>
+            <td><span class="badge badge-green">Cleared</span></td>
+          </tr>
+          <tr>
+            <td style="font-family: var(--font-mono);">TX-98990</td>
+            <td>Yesterday, 17:40:11</td>
+            <td>Custody Fee</td>
+            <td>System Auto-Debit</td>
+            <td style="color: #f87171; font-weight: 700;">-$250.00</td>
+            <td><span class="badge badge-green">Cleared</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <script src="{{BASE_PATH}}/public/js/bank-nav.js"></script>
+  <script src="{{BASE_PATH}}/public/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IronVault Bank – Institutional Accounts</title>
+  <link rel="stylesheet" href="{{BASE_PATH}}/public/css/common.css">
+  <link rel="stylesheet" href="{{BASE_PATH}}/public/css/bank.css">
+  <script>
+    window.__CTF_CONFIG__ = {
+      basePath: "{{BASE_PATH}}",
+      mainSiteUrl: "{{MAIN_SITE_URL}}",
+      token: "{{TOKEN}}"
+    };
+  </script>
+</head>
+<body>
+
+  <!-- Corporate Bank Header -->
+  <header class="bank-header">
+    <div class="container">
+      <div class="bank-nav-wrap">
+        <a href="{{BASE_PATH}}/bank/dashboard" class="bank-logo">
+          <div class="bank-seal">IV</div>
+          <div class="bank-name">
+            <h2>IronVault Bank</h2>
+            <span>Institutional Wealth & Reserves</span>
+          </div>
+        </a>
+
+        <nav>
+          <ul class="bank-nav-links">
+            <li><a href="{{BASE_PATH}}/bank/teller-login">Teller Portal</a></li>
+            <li><a href="{{BASE_PATH}}/bank/accounts" class="active">Accounts</a></li>
+            <li><a href="{{BASE_PATH}}/bank/transfers">Transfers</a></li>
+            <li><a href="{{BASE_PATH}}/bank/dashboard">Dashboard</a></li>
+            <li><a href="{{BASE_PATH}}/bank/audit">Audit / Help</a></li>
+            <li>
+              <a href="{{BASE_PATH}}" id="returnToConsoleLink" class="console-return-link">
+                ⚡ Return to Heist Console
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Security banner -->
+  <div class="security-banner">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+      <span>INSTITUTIONAL ACCOUNT DIRECTORY // ENCRYPTED CUSTODY</span>
+      <div>
+        <span>OPERATOR INTEGRITY: <strong id="bankHudLives" style="color: #34d399;">3 / 3</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container bank-page-container">
+    <div style="margin-bottom: 24px;">
+      <h2 style="font-size: 1.8rem; color: #fff; font-weight: 800;">Institutional Accounts Portfolio</h2>
+      <p style="color: var(--text-muted); font-size: 0.9rem;">
+        Master directory of Tier-1 capital reserves and liquidity custody accounts.
+      </p>
+    </div>
+
+    <table class="bank-table">
+      <thead>
+        <tr>
+          <th>Account ID</th>
+          <th>Account Title</th>
+          <th>Type</th>
+          <th>Jurisdiction</th>
+          <th>Cleared Balance</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-family: var(--font-mono); color: var(--gold-light);">#1001</td>
+          <td>Primary Reserve Vault</td>
+          <td>Operating Reserve</td>
+          <td>Zurich (Custodial)</td>
+          <td style="font-weight: 700; color: #fff;">$4,213.50</td>
+          <td>
+            <a href="{{BASE_PATH}}/bank/transfers" class="btn btn-outline-gold" style="padding: 4px 10px; font-size: 0.75rem;">Wire Transfer</a>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-family: var(--font-mono); color: var(--gold-light);">#2044</td>
+          <td>Interbank Liquidity Pool</td>
+          <td>Money Market Reserve</td>
+          <td>London (High-Value)</td>
+          <td style="font-weight: 700; color: #fff;">$1,250,000.00</td>
+          <td>
+            <a href="{{BASE_PATH}}/bank/transfers" class="btn btn-outline-gold" style="padding: 4px 10px; font-size: 0.75rem;">Wire Transfer</a>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-family: var(--font-mono); color: var(--gold-light);">#5812</td>
+          <td>Institutional Escrow Custody</td>
+          <td>Segregated Client Assets</td>
+          <td>Geneva</td>
+          <td style="font-weight: 700; color: #fff;">$8,940,210.00</td>
+          <td>
+            <span class="badge badge-gold">Locked</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-family: var(--font-mono); color: var(--gold-light);">#9910</td>
+          <td>Physical Gold Bullion Reserves</td>
+          <td>Tier-1 Commodity Collateral</td>
+          <td>Vault Sector 9 (Sub-Level)</td>
+          <td style="font-weight: 700; color: #fff;">4,500 Fine Oz ($11,250,000.00)</td>
+          <td>
+            <span class="badge badge-gold">Audited</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="{{BASE_PATH}}/public/js/bank-nav.js"></script>
+</body>
+</html>
