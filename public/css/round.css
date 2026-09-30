@@ -1,5 +1,6 @@
 /* ==========================================================================
    CTF ROUND CONSOLE STYLING (round.css)
+   Money Heist Black & Red Infiltration Terminal
    ========================================================================== */
 
 .console-hero {
@@ -33,14 +34,14 @@
   background: var(--border-color);
 }
 
-.hud-card.hud-gold::before {
-  background: var(--gold-primary);
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+.hud-card.hud-red::before {
+  background: var(--red-primary);
+  box-shadow: 0 0 10px rgba(229, 9, 20, 0.6);
 }
 
-.hud-card.hud-red::before {
-  background: var(--accent-red);
-  box-shadow: 0 0 10px var(--accent-red-glow);
+.hud-card.hud-gold::before {
+  background: var(--red-primary);
+  box-shadow: 0 0 10px rgba(229, 9, 20, 0.6);
 }
 
 .hud-card.hud-cyan::before {
@@ -58,6 +59,7 @@
   color: var(--text-muted);
   font-family: var(--font-mono);
   margin-bottom: 6px;
+  font-weight: 700;
 }
 
 .hud-value {
@@ -76,21 +78,21 @@
 }
 
 .life-pip {
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-  background: rgba(239, 68, 68, 0.2);
-  border: 2px solid var(--accent-red);
+  background: rgba(229, 9, 20, 0.2);
+  border: 2px solid var(--red-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 13px;
   transition: all 0.3s ease;
 }
 
 .life-pip.active {
-  background: var(--accent-red);
-  box-shadow: 0 0 12px rgba(239, 68, 68, 0.6);
+  background: var(--red-primary);
+  box-shadow: 0 0 12px rgba(229, 9, 20, 0.7);
 }
 
 .life-pip.lost {
@@ -120,12 +122,12 @@
 }
 
 .puzzle-card:hover {
-  border-color: var(--border-gold);
+  border-color: var(--border-red);
 }
 
 .puzzle-card.solved {
-  border-color: rgba(16, 185, 129, 0.5);
-  background: linear-gradient(180deg, #121e3d 0%, rgba(16, 185, 129, 0.05) 100%);
+  border-color: rgba(16, 185, 129, 0.6);
+  background: linear-gradient(180deg, #16161d 0%, rgba(16, 185, 129, 0.08) 100%);
 }
 
 .puzzle-card-header {
@@ -139,20 +141,21 @@
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 1px;
-  color: var(--gold-light);
+  color: var(--red-light);
   text-transform: uppercase;
   margin-bottom: 4px;
+  font-weight: 700;
 }
 
 .puzzle-title {
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 800;
   color: #fff;
 }
 
 .story-box {
-  background: rgba(10, 19, 41, 0.7);
-  border-left: 3px solid var(--gold-dark);
+  background: rgba(14, 14, 18, 0.85);
+  border-left: 3px solid var(--red-primary);
   padding: 12px 14px;
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   font-size: 0.88rem;
@@ -207,11 +210,12 @@
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: var(--text-muted);
+  color: #cbd5e1;
+  font-weight: 700;
 }
 
 .hint-tier-item {
-  background: rgba(8, 14, 30, 0.6);
+  background: rgba(10, 10, 12, 0.7);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
   padding: 10px 14px;
@@ -234,13 +238,13 @@
 
 .hint-content {
   margin-top: 8px;
-  color: var(--gold-light);
+  color: #fff;
   font-family: var(--font-mono);
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.4);
   padding: 8px 10px;
   border-radius: 4px;
   font-size: 0.8rem;
-  border-left: 2px solid var(--gold-primary);
+  border-left: 2px solid var(--red-primary);
 }
 
 /* Teaching Panel (Post-Solve) */
@@ -279,7 +283,7 @@
 
 /* Terminal log on round console */
 .mission-log-box {
-  background: #050a18;
+  background: #060608;
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   padding: 14px 18px;
@@ -305,9 +309,9 @@
 }
 
 .mission-log-line span.warn {
-  color: var(--gold-light);
+  color: var(--red-light);
 }
 
 .mission-log-line span.alert {
-  color: #f87171;
+  color: #ff3344;
 }

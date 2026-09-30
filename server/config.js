@@ -24,16 +24,16 @@ const config = {
   // Hard mode flag for Puzzle 3 (header on 2nd request)
   HARD_MODE_HEADER: process.env.HARD_MODE_HEADER !== 'false',
 
-  // Game rules
+  // Game rules - zero penalties
   INITIAL_LIVES: 3,
   
-  // Scoring rules
+  // Scoring rules (zero penalties)
   SCORING: {
     BASE_POINTS: 100,
-    HINT_PENALTY: 10,
-    MIN_POINTS: 40,
-    MAX_TIME_BONUS: 30, // Max time bonus if solved quickly
-    BONUS_DECAY_SECONDS: 600 // Decays to 0 over 10 minutes
+    HINT_PENALTY: 0, // No penalties for using hints
+    MIN_POINTS: 100,
+    MAX_TIME_BONUS: 30, // Time bonus if solved quickly
+    BONUS_DECAY_SECONDS: 600 // Decays over 10 minutes
   },
 
   // Hint timers (seconds from when player first opens puzzle)
@@ -42,7 +42,7 @@ const config = {
   // Rate limiting
   SUBMISSION_RATE_LIMIT_PER_MINUTE: 10,
 
-  // Puzzle configuration
+  // Puzzle configuration (Direct codes - NO encoding)
   PUZZLES: {
     1: {
       id: 1,
@@ -50,7 +50,6 @@ const config = {
       category: "SQL Injection",
       story: "A teller forgot their password. The portal is old — when login fails, it shows you the query it tried to run. Maybe that's useful.",
       code: "IVB-LEVEL1-7Q2",
-      encodedToken: "SVZCLUxFVkVMMS03UTI=", // Base64
       hints: [
         "What does the debug console show you about the query structure?",
         "The filter blocks -- and ;. Can you make the condition true without a comment?",
@@ -65,11 +64,10 @@ const config = {
       category: "DOM Manipulation",
       story: "The Transfer button is disabled and a transparent overlay blocks the form.",
       code: process.env.PUZZLE_2_CODE || "IVB-LEVEL2-5K8",
-      encodedToken: "LYE-OHYHO2-5N8", // Caesar shifted (+3)
       hints: [
         "Some elements are being blocked or disabled — inspect the page.",
         "Look at the button's attributes and at what sits on top of the form.",
-        "Remove `disabled` and delete div.fraud-shield, then click Transfer. Then decode the token with a Caesar shift."
+        "Remove `disabled` and delete div.fraud-shield, then click Transfer to reveal the code."
       ],
       teachingPanel: "Client-side restrictions are not security. Anything in the browser can be modified; real controls must be enforced on the server.",
       bankPageUrl: "/bank/transfers"
@@ -80,12 +78,11 @@ const config = {
       category: "HTTP Response Inspection",
       story: "Your dashboard loads your balance fine. But the bank's internal audit code isn't in the page — it travels with the response, not inside it.",
       code: "IVB-LEVEL3-3M9",
-      encodedToken: "SVZCLUxFVkVMMy0zTTk=", // Base64
       decoyBodyCode: "FAKE-000-DECOY",
       hints: [
         "The visible balance data isn't the whole response. What else does a response carry?",
         "Look in Response Headers, not the body.",
-        "The exact header name is X-Audit-Code."
+        "The exact header name is X-Audit-Code containing the code."
       ],
       teachingPanel: "In real APIs, sensitive metadata should never travel in custom headers either — this puzzle exaggerates it for teaching purposes. The broader lesson: always inspect full HTTP responses, not just what's rendered on the page.",
       bankPageUrl: "/bank/dashboard"

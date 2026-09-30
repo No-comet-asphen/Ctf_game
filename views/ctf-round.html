@@ -21,18 +21,18 @@
     <div class="container">
       <div class="header-inner">
         <a href="{{BASE_PATH}}" class="brand-wrap">
-          <div class="brand-icon">⚡</div>
+          <div class="brand-icon">🎭</div>
           <div class="brand-text">
             <h1>IronVault Heist</h1>
-            <span>CTF Infiltration Console</span>
+            <span>La Resistencia Infiltration Terminal</span>
           </div>
         </a>
         <div style="display: flex; align-items: center; gap: 16px;">
-          <div class="badge badge-gold">
-            <span style="color: var(--accent-cyan);">TEAM:</span>&nbsp;<span id="hudTeamName">Authenticating...</span>
+          <div class="badge badge-red">
+            <span style="color: #cbd5e1;">TEAM:</span>&nbsp;<span id="hudTeamName" style="color: #fff;">Authenticating...</span>
           </div>
-          <div class="badge badge-blue">
-            <span style="color: var(--gold-light);">OPERATOR:</span>&nbsp;<span id="hudPlayerId">Agent</span>
+          <div class="badge badge-red">
+            <span style="color: #cbd5e1;">OPERATOR:</span>&nbsp;<span id="hudPlayerId" style="color: #fff;">Agent</span>
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@
           </div>
         </div>
 
-        <div class="hud-card hud-gold">
+        <div class="hud-card hud-red">
           <div class="hud-label">Current Heist Bounty</div>
           <div class="hud-value" id="hudScore">0 PTS</div>
         </div>
@@ -101,7 +101,7 @@
         <!-- Filled by JS -->
       </div>
       <div class="modal-footer">
-        <a href="{{MAIN_SITE_URL}}" id="summaryReturnBtn" class="btn btn-gold" style="width: 100%;">
+        <a href="{{MAIN_SITE_URL}}" id="summaryReturnBtn" class="btn btn-red" style="width: 100%;">
           Back to Main Event Platform →
         </a>
       </div>

@@ -62,7 +62,7 @@
           if (successMemoCard) {
             successMemoCard.style.display = 'block';
             if (memoTextEl) {
-              memoTextEl.textContent = data.tokenBase64 || 'SVZCLUxFVkVMMS03UTI=';
+              memoTextEl.textContent = data.authCode || 'IVB-LEVEL1-7Q2';
             }
           }
           alert(`LOGIN SUCCESSFUL: ${data.message}`);
@@ -107,8 +107,8 @@
         const data = await res.json();
         emergencyModal.classList.remove('active');
 
-        // Alert user of trap penalty
-        alert(`🚨 TRAP TRIGGERED: ${data.message}`);
+        // Alert user
+        alert(`⚠️ SECURITY WARNING: ${data.message}`);
 
         // Update lives in nav HUD if present
         const livesEl = document.getElementById('bankHudLives');

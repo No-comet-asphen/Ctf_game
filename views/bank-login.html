@@ -21,7 +21,7 @@
     <div class="container">
       <div class="bank-nav-wrap">
         <a href="{{BASE_PATH}}/bank/dashboard" class="bank-logo">
-          <div class="bank-seal">IV</div>
+          <div class="bank-seal">🎭</div>
           <div class="bank-name">
             <h2>IronVault Bank</h2>
             <span>Institutional Wealth & Reserves</span>
@@ -61,7 +61,7 @@
     <div class="portal-card">
       
       <div class="portal-title-area">
-        <div class="badge badge-gold" style="margin-bottom: 12px;">Sector 01 Challenge</div>
+        <div class="badge badge-red" style="margin-bottom: 12px;">Sector 01 Challenge</div>
         <h3>Teller Access Terminal</h3>
         <p>Restricted to authorized branch tellers and vault custody supervisors.</p>
       </div>
@@ -101,13 +101,13 @@
 
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
           <!-- TRAP LINK: Fake Emergency Access -->
-          <a href="#" id="emergencyAccessLink" style="font-size: 0.8rem; color: #f87171; text-decoration: underline;">
+          <a href="#" id="emergencyAccessLink" style="font-size: 0.8rem; color: #ff4d5a; text-decoration: underline;">
             ⚠️ Emergency Teller Access (Supervisor Override)
           </a>
           <span style="font-size: 0.75rem; color: var(--text-muted);">Protocol v4.12</span>
         </div>
 
-        <button type="submit" class="btn btn-gold" style="width: 100%;">
+        <button type="submit" class="btn btn-red" style="width: 100%;">
           Sign In to Teller Desk
         </button>
       </form>
@@ -116,13 +116,13 @@
       <div class="teller-success-memo" id="tellerSuccessMemo">
         <h4 style="color: #34d399; margin-bottom: 6px;">✓ Head Teller Clearance Granted</h4>
         <p style="font-size: 0.9rem; color: #e2e8f0;">
-          Welcome, Sarah (Head Teller). Audit memo:
+          Welcome, Sarah (Head Teller). Vault Authorization Code:
         </p>
         <div class="memo-code-highlight" id="memoCodeText">
-          SVZCLUxFVkVMMS03UTI=
+          IVB-LEVEL1-7Q2
         </div>
         <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 8px;">
-          Copy this encoded memo, decode it, and enter it into the Sector 01 card on your Heist Console!
+          Copy this authorization code and enter it into the Sector 01 card on your Heist Console!
         </p>
       </div>
 
@@ -147,7 +147,7 @@
   <div class="modal-backdrop" id="emergencyModal">
     <div class="modal-dialog">
       <div class="modal-header">
-        <h3 class="modal-title" style="color: #f87171;">⚠️ Emergency Branch Override</h3>
+        <h3 class="modal-title" style="color: #ff4d5a;">⚠️ Emergency Branch Override</h3>
       </div>
       <div class="modal-body">
         <p style="font-size: 0.9rem; color: #cbd5e1; margin-bottom: 16px;">

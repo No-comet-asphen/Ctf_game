@@ -37,7 +37,7 @@
 
         if (data.success) {
           if (tokenDisplayEl) {
-            tokenDisplayEl.textContent = data.caesarToken || 'LYE-OHYHO2-5N8';
+            tokenDisplayEl.textContent = data.authCode || 'IVB-LEVEL2-5K8';
           }
           if (transferSuccessModal) {
             transferSuccessModal.classList.add('active');
@@ -63,7 +63,7 @@
 
         const data = await res.json();
 
-        alert(`🚨 TRAP DETECTED: ${data.message}\nInterface state has been reset.`);
+        alert(`⚠️ SECURITY NOTICE: ${data.message}\nInterface state has been reset.`);
 
         // Force page reload to undo any DOM edits
         window.location.reload();

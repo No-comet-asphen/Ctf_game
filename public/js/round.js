@@ -202,7 +202,7 @@
       hintsHtml = `
         <div class="hints-container">
           <div class="hints-header">
-            <h4>💡 Intel & Hints (-10 pts each)</h4>
+            <h4>💡 Intel & Hints</h4>
           </div>
           <div class="hints-list" id="hintsList-${p.id}">
             ${renderHintsListHtml(p.id, p.hints)}
@@ -290,7 +290,7 @@
             <div class="hint-tier-header">
               <span class="badge badge-blue">Hint Tier ${h.tier}</span>
               <button class="btn btn-secondary btn-unlock-hint" style="padding: 4px 10px; font-size: 0.75rem;" data-tier="${idx}">
-                Unlock Hint (-10 pts)
+                Unlock Hint
               </button>
             </div>
           </div>
@@ -356,15 +356,9 @@
         renderHUD();
       }
 
-      if (data.isEncodedNotice) {
-        showToast(data.message, 'warning');
-        addMissionLog(`Encoding detected on Sector 0${puzzleId}: Decryption required first.`, 'warn');
-        return;
-      }
-
       if (data.trapTriggered) {
-        showToast(data.message, 'error', 6000);
-        addMissionLog(`ALARM: Trap triggered in Sector 0${puzzleId}! Life lost.`, 'alert');
+        showToast(data.message, 'warning', 6000);
+        addMissionLog(`SECURITY WARNING: Sector 0${puzzleId} trap triggered.`, 'alert');
         renderPuzzles();
         checkGameCompletion();
         return;
@@ -400,7 +394,7 @@
 
       const data = await res.json();
       if (data.success) {
-        showToast(`Hint Tier ${data.tier} unlocked (-10 pts penalty).`, 'warning');
+        showToast(`Hint Tier ${data.tier} unlocked.`, 'warning');
         addMissionLog(`Intel unlocked for Sector 0${puzzleId}: Hint Tier ${data.tier}.`, 'warn');
         if (data.state) {
           gameState = data.state;

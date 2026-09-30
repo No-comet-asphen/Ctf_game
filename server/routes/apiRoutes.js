@@ -175,58 +175,34 @@ router.post('/submit-code', async (req, res) => {
   const rawCode = (code || '').trim();
   const normalizedCode = rawCode.toUpperCase();
 
-  // 1. Check if the submission is in encoded format
-  const knownEncodedTokens = [
-    config.PUZZLES[1].encodedToken.toUpperCase(), // SVZCLUXFVKEVMS03UTI=
-    config.PUZZLES[2].encodedToken.toUpperCase(), // LYE-OHYHO2-5N8
-    config.PUZZLES[3].encodedToken.toUpperCase()  // SVZCLUXFVKEVMY0ZTTK=
-  ];
-
-  if (knownEncodedTokens.includes(normalizedCode)) {
-    return res.json({
-      success: false,
-      isEncodedNotice: true,
-      message: "That looks encoded. Decode it first.",
-      state: gameState.getClientState(req.playerId)
-    });
-  }
-
-  // 2. Puzzle 3 specific trap answers
+  // 1. Puzzle 3 specific decoy traps (Zero penalties: warning only)
   if (pId === 3) {
-    // Trap A: Submitting body decoy code "FAKE-000-DECOY"
+    // Decoy body code "FAKE-000-DECOY"
     if (normalizedCode === 'FAKE-000-DECOY') {
       gameState.deductLife(req.playerId, 'Submitted body decoy audit_code');
       const updatedState = gameState.getClientState(req.playerId);
 
-      if (updatedState.lives <= 0) {
-        handleRoundEnd(req.playerId, updatedState);
-      }
-
       return res.json({
         success: false,
         trapTriggered: true,
-        lifeLost: true,
-        message: "That's a decoy field. The real code doesn't live in the body.",
+        lifeLost: false,
+        message: "That's a decoy field! The real code travels in the response header X-Audit-Code. (No penalty incurred)",
         state: updatedState
       });
     }
 
-    // Trap B: Submitting the X-Request-Id (UUID)
+    // Submitting the X-Request-Id (UUID)
     const isUuid = /^[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}$/i.test(rawCode) ||
                    rawCode.toLowerCase().startsWith('req-');
     if (isUuid) {
       gameState.deductLife(req.playerId, 'Submitted X-Request-Id UUID header');
       const updatedState = gameState.getClientState(req.playerId);
 
-      if (updatedState.lives <= 0) {
-        handleRoundEnd(req.playerId, updatedState);
-      }
-
       return res.json({
         success: false,
         trapTriggered: true,
-        lifeLost: true,
-        message: "That's just a request ID, not an audit code — check the header name again.",
+        lifeLost: false,
+        message: "That's just a request ID, not the audit code — check header X-Audit-Code. (No penalty incurred)",
         state: updatedState
       });
     }
@@ -346,8 +322,8 @@ router.post('/puzzle1/login', (req, res) => {
       filtered: wasFiltered,
       filterNotice: wasFiltered ? "Suspicious characters removed for your security." : null,
       message: "Authentication bypass successful. Access granted to Head Teller Portal.",
-      memo: "Welcome, Sarah (Head Teller). Audit memo: SVZCLUxFVkVMMS03UTI=",
-      tokenBase64: config.PUZZLES[1].encodedToken
+      memo: `Welcome, Sarah (Head Teller). Vault Authorization Code: ${config.PUZZLES[1].code}`,
+      authCode: config.PUZZLES[1].code
     });
   }
 
@@ -361,22 +337,17 @@ router.post('/puzzle1/login', (req, res) => {
 });
 
 /**
- * PUZZLE 1 TRAP: Emergency Access modal submission
- * Always fails and costs 1 life!
+ * PUZZLE 1 TRAP: Emergency Access modal submission (Zero penalties mode)
  */
 router.post('/puzzle1/emergency-access', (req, res) => {
   gameState.deductLife(req.playerId, 'Emergency Access override attempt');
   const updatedState = gameState.getClientState(req.playerId);
 
-  if (updatedState.lives <= 0) {
-    handleRoundEnd(req.playerId, updatedState);
-  }
-
   res.json({
     success: false,
     trapTriggered: true,
-    lifeLost: true,
-    message: "EMERGENCY OVERRIDE REJECTED: Intrusion attempt logged to Central Security! 1 life deducted.",
+    lifeLost: false,
+    message: "EMERGENCY OVERRIDE REJECTED: Intrusion attempt logged to Central Security! (No penalty incurred)",
     state: updatedState
   });
 });
@@ -396,32 +367,27 @@ router.post('/puzzle2/transfer', (req, res) => {
     });
   }
 
-  // Returns Caesar-shifted (+3) token: LYE-OHYHO2-5N8
+  // Returns direct code: IVB-LEVEL2-5K8 (No encoding)
   res.json({
     success: true,
     message: "Transfer executed successfully! Fraud shield bypassed.",
-    caesarToken: config.PUZZLES[2].encodedToken,
-    instructions: "Wire Reference Code issued: " + config.PUZZLES[2].encodedToken
+    authCode: config.PUZZLES[2].code,
+    instructions: "Wire Reference Code issued: " + config.PUZZLES[2].code
   });
 });
 
 /**
- * PUZZLE 2 TRAP: "Unlock Transfers" button click
- * Undoes DOM edits and costs 1 life!
+ * PUZZLE 2 TRAP: "Unlock Transfers" button click (Zero penalties mode)
  */
 router.post('/puzzle2/trap-unlock', (req, res) => {
   gameState.deductLife(req.playerId, 'Clicked Unlock Transfers trap button');
   const updatedState = gameState.getClientState(req.playerId);
 
-  if (updatedState.lives <= 0) {
-    handleRoundEnd(req.playerId, updatedState);
-  }
-
   res.json({
     success: false,
     trapTriggered: true,
-    lifeLost: true,
-    message: "SECURITY TRIGGERED: Automated quick-unlock detected as tampering. Interface state reset! 1 life deducted.",
+    lifeLost: false,
+    message: "SECURITY WARNING: Automated quick-unlock detected as tampering. Interface state reset! (No penalty incurred)",
     state: updatedState
   });
 });
@@ -444,7 +410,8 @@ router.get('/balance', (req, res) => {
   const shouldSendAuditHeader = !config.HARD_MODE_HEADER || requestCount >= 2;
 
   if (shouldSendAuditHeader) {
-    res.setHeader('X-Audit-Code', config.PUZZLES[3].encodedToken);
+    // Direct code: IVB-LEVEL3-3M9 (No encoding)
+    res.setHeader('X-Audit-Code', config.PUZZLES[3].code);
   }
 
   res.json({

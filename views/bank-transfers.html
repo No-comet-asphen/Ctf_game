@@ -21,7 +21,7 @@
     <div class="container">
       <div class="bank-nav-wrap">
         <a href="{{BASE_PATH}}/bank/dashboard" class="bank-logo">
-          <div class="bank-seal">IV</div>
+          <div class="bank-seal">🎭</div>
           <div class="bank-name">
             <h2>IronVault Bank</h2>
             <span>Institutional Wealth & Reserves</span>
@@ -59,7 +59,7 @@
   <!-- Page Content -->
   <div class="container bank-page-container">
     <div class="portal-title-area">
-      <div class="badge badge-gold" style="margin-bottom: 12px;">Sector 02 Challenge</div>
+      <div class="badge badge-red" style="margin-bottom: 12px;">Sector 02 Challenge</div>
       <h3 style="font-size: 1.75rem;">High-Value Reserve Wire Transfer</h3>
       <p>Initiate real-time interbank gross settlement from institutional reserve vaults.</p>
     </div>
@@ -113,13 +113,13 @@
         </div>
 
         <!-- PUZZLE 2 BARRIER 2: Button disabled attribute -->
-        <button type="submit" id="transferBtn" class="btn btn-gold" style="width: 100%;" disabled>
+        <button type="submit" id="transferBtn" class="btn btn-red" style="width: 100%;" disabled>
           Execute Reserve Transfer
         </button>
       </form>
     </div>
 
-    <!-- PUZZLE 2 TRAP: Bright "Unlock Transfers" button -->
+    <!-- PUZZLE 2 TRAP: "Unlock Transfers" button -->
     <div style="text-align: center; margin-top: 32px; max-width: 500px; margin-left: auto; margin-right: auto;">
       <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px;">
         Transfer controls frozen or unresponsive?
@@ -127,14 +127,14 @@
       <button type="button" id="trapUnlockBtn" class="btn trap-unlock-btn" style="width: 100%;">
         ⚡ Quick Bypass: Automated Interface Unlock
       </button>
-      <span style="font-size: 0.75rem; color: #f87171; display: block; margin-top: 6px;">
+      <span style="font-size: 0.75rem; color: #ff4d5a; display: block; margin-top: 6px;">
         ⚠️ Warning: Automated unlock attempts are screened by IronVault behavioral detection algorithms.
       </span>
     </div>
 
   </div>
 
-  <!-- Success Modal revealing Caesar Token -->
+  <!-- Success Modal revealing Direct Code -->
   <div class="modal-backdrop" id="transferSuccessModal">
     <div class="modal-dialog">
       <div class="modal-header">
@@ -144,20 +144,20 @@
         <p style="font-size: 0.95rem; color: #e2e8f0; margin-bottom: 14px;">
           The fraud prevention barrier was successfully bypassed. The wire transfer has been dispatched to the settlement network.
         </p>
-        <div style="background: #030712; border: 1px dashed #34d399; padding: 14px; border-radius: var(--radius-sm); text-align: center;">
+        <div style="background: #050507; border: 2px dashed #34d399; padding: 14px; border-radius: var(--radius-sm); text-align: center;">
           <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase;">
-            Encrypted Wire Authorization Token:
+            Vault Authorization Code:
           </div>
           <div id="caesarTokenDisplay" style="font-family: var(--font-mono); font-size: 1.35rem; color: #6ee7b7; font-weight: 800; letter-spacing: 2px; user-select: all;">
-            LYE-OHYHO2-5N8
+            IVB-LEVEL2-5K8
           </div>
         </div>
-        <p style="font-size: 0.82rem; color: var(--gold-light); margin-top: 14px;">
-          🔑 <strong>Cryptographic Notice:</strong> This authorization token is protected with a Caesar cipher (shift +3). Shift letters backward (-3) to recover the original plaintext code, then enter it into Sector 02 on the Heist Console!
+        <p style="font-size: 0.85rem; color: #e2e8f0; margin-top: 14px;">
+          Copy this authorization code and enter it into the Sector 02 card on your Heist Console!
         </p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-gold" id="modalCloseBtn">
+        <button type="button" class="btn btn-red" id="modalCloseBtn">
           Acknowledge & Return
         </button>
       </div>

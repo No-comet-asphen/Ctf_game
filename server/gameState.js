@@ -70,20 +70,12 @@ function markPuzzleOpened(playerId, puzzleId) {
 }
 
 /**
- * Deduct a life (trap triggered)
+ * Deduct a life (trap triggered) - Penalties removed
  */
 function deductLife(playerId, reason = 'Trap triggered') {
   const state = getOrCreatePlayerState(playerId);
-  if (state.isCompleted) return state;
-
-  state.lives = Math.max(0, state.lives - 1);
-  console.log(`[GAME STATE] Life deducted for ${playerId}. Reason: "${reason}". Lives left: ${state.lives}`);
-
-  if (state.lives === 0) {
-    state.isCompleted = true;
-    state.endTime = Date.now();
-  }
-
+  // Zero penalties: Log trap warning without deducting lives
+  console.log(`[GAME STATE] Trap triggered for ${playerId}. Reason: "${reason}". (Zero penalty mode: integrity preserved)`);
   return state;
 }
 
@@ -183,14 +175,10 @@ function unlockHint(playerId, puzzleId, tierIndex) {
 }
 
 /**
- * Calculate score for a solved puzzle
+ * Calculate score for a solved puzzle (Zero penalties mode)
  */
 function calculatePuzzleScore(puzzleState) {
-  const hintsUsed = puzzleState.hintsUnlocked.filter(Boolean).length;
-  const baseMinusPenalty = Math.max(
-    config.SCORING.MIN_POINTS,
-    config.SCORING.BASE_POINTS - (hintsUsed * config.SCORING.HINT_PENALTY)
-  );
+  const basePoints = config.SCORING.BASE_POINTS; // 100 points full base
 
   // Time bonus based on time to solve
   const solveDurationSeconds = puzzleState.solvedAt && puzzleState.openedAt
@@ -200,7 +188,7 @@ function calculatePuzzleScore(puzzleState) {
   const timeDecayFraction = Math.max(0, 1 - (solveDurationSeconds / config.SCORING.BONUS_DECAY_SECONDS));
   const timeBonus = Math.round(config.SCORING.MAX_TIME_BONUS * timeDecayFraction);
 
-  return baseMinusPenalty + timeBonus;
+  return basePoints + timeBonus;
 }
 
 /**

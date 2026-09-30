@@ -1,13 +1,13 @@
 /* ==========================================================================
-   IRONVAULT BANK CORPORATE STYLING (bank.css)
-   Enterprise Private Wealth & Reserve Portal
+   IRONVAULT BANK – MONEY HEIST BLACK & RED CORPORATE STYLING (bank.css)
+   Royal Mint / Institutional Vault Portal
    ========================================================================== */
 
 .bank-header {
-  background: #091329;
-  border-bottom: 2px solid var(--gold-primary);
+  background: #0d0d12;
+  border-bottom: 2px solid var(--red-primary);
   padding: 12px 0;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 4px 20px rgba(229, 9, 20, 0.25);
 }
 
 .bank-nav-wrap {
@@ -28,21 +28,21 @@
 .bank-seal {
   width: 44px;
   height: 44px;
-  background: var(--gold-gradient);
+  background: var(--red-gradient);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 22px;
   font-weight: 900;
-  color: #080e1e;
-  border: 2px solid #fff;
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  box-shadow: var(--red-glow);
 }
 
 .bank-name h2 {
   font-size: 1.15rem;
-  font-weight: 800;
+  font-weight: 900;
   color: #ffffff;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -50,10 +50,11 @@
 
 .bank-name span {
   font-size: 0.72rem;
-  color: var(--gold-light);
-  letter-spacing: 1px;
+  color: var(--red-light);
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   font-family: var(--font-mono);
+  font-weight: 700;
 }
 
 .bank-nav-links {
@@ -67,7 +68,7 @@
   color: var(--text-main);
   text-decoration: none;
   font-size: 0.88rem;
-  font-weight: 600;
+  font-weight: 700;
   padding: 8px 14px;
   border-radius: var(--radius-sm);
   transition: all 0.2s ease;
@@ -75,32 +76,32 @@
 
 .bank-nav-links a:hover,
 .bank-nav-links a.active {
-  background: rgba(212, 175, 55, 0.15);
-  color: var(--gold-light);
+  background: rgba(229, 9, 20, 0.2);
+  color: var(--red-light);
 }
 
 .console-return-link {
-  background: #172554;
-  border: 1px solid var(--gold-primary);
+  background: #1a1a24;
+  border: 1px solid var(--red-primary);
   color: #fff !important;
   display: flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+  box-shadow: 0 0 12px rgba(229, 9, 20, 0.3);
 }
 
 .console-return-link:hover {
-  background: var(--gold-gradient) !important;
-  color: #080e1e !important;
+  background: var(--red-gradient) !important;
+  color: #fff !important;
 }
 
 /* Security notice banner */
 .security-banner {
-  background: rgba(14, 165, 233, 0.1);
-  border-bottom: 1px solid rgba(14, 165, 233, 0.3);
+  background: rgba(229, 9, 20, 0.08);
+  border-bottom: 1px solid rgba(229, 9, 20, 0.3);
   padding: 8px 0;
   font-size: 0.8rem;
-  color: var(--accent-cyan);
+  color: var(--red-light);
   font-family: var(--font-mono);
   display: flex;
   justify-content: space-between;
@@ -155,8 +156,8 @@
 }
 
 .debug-badge {
-  background: #f59e0b;
-  color: #080e1e;
+  background: var(--red-primary);
+  color: #fff;
   font-size: 0.7rem;
   font-weight: 800;
   padding: 2px 8px;
@@ -166,13 +167,13 @@
 }
 
 .debug-terminal {
-  background: #030712;
-  border: 1px solid #1f2937;
+  background: #050507;
+  border: 1px solid #262633;
   border-radius: var(--radius-sm);
   padding: 14px 16px;
   font-family: var(--font-mono);
   font-size: 0.85rem;
-  color: #10b981;
+  color: #ff4d5a;
   overflow-x: auto;
   white-space: pre-wrap;
   word-break: break-all;
@@ -180,9 +181,9 @@
 }
 
 .debug-filter-banner {
-  background: rgba(245, 158, 11, 0.15);
-  border: 1px solid #f59e0b;
-  color: #fde68a;
+  background: rgba(229, 9, 20, 0.15);
+  border: 1px solid var(--red-primary);
+  color: #ff99a2;
   padding: 10px 14px;
   border-radius: var(--radius-sm);
   margin-bottom: 12px;
@@ -204,13 +205,14 @@
 
 .memo-code-highlight {
   font-family: var(--font-mono);
-  font-size: 1.15rem;
-  background: #030712;
-  border: 1px dashed #10b981;
-  padding: 8px 14px;
-  border-radius: 4px;
+  font-size: 1.25rem;
+  background: #050507;
+  border: 2px dashed #10b981;
+  padding: 10px 16px;
+  border-radius: 6px;
   color: #6ee7b7;
-  letter-spacing: 1.5px;
+  font-weight: 800;
+  letter-spacing: 2px;
   margin-top: 10px;
   display: inline-block;
   user-select: all;
@@ -232,14 +234,13 @@
 .fraud-shield {
   position: absolute;
   inset: 0;
-  background: rgba(15, 23, 42, 0.05); /* Nearly transparent */
+  background: rgba(10, 10, 12, 0.05); /* Transparent */
   z-index: 50;
   cursor: not-allowed;
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Visual cue only on hover to hint at overlay */
   transition: backdrop-filter 0.2s;
 }
 
@@ -248,21 +249,21 @@
 }
 
 .trap-unlock-btn {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
+  background: linear-gradient(135deg, #b91c1c, #99000a);
   color: #fff;
-  border: none;
+  border: 1px solid var(--red-light);
   font-weight: 700;
-  box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+  box-shadow: var(--red-glow);
 }
 
 .trap-unlock-btn:hover {
-  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  background: linear-gradient(135deg, #e50914, #b91c1c);
 }
 
 /* Dashboard Styles (Puzzle 3) */
 .balance-display-card {
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-  border: 1px solid var(--border-gold);
+  background: linear-gradient(135deg, #1e1e27 0%, #121218 100%);
+  border: 1px solid var(--border-red);
   border-radius: var(--radius-lg);
   padding: 28px;
   margin-bottom: 28px;
@@ -271,22 +272,23 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 20px;
+  box-shadow: 0 4px 20px rgba(229, 9, 20, 0.15);
 }
 
 .balance-amount {
   font-size: 2.25rem;
   font-weight: 900;
-  color: var(--gold-light);
+  color: #fff;
   letter-spacing: 1px;
 }
 
 .network-tip-box {
-  background: rgba(56, 189, 248, 0.1);
-  border-left: 3px solid var(--accent-cyan);
+  background: rgba(229, 9, 20, 0.1);
+  border-left: 3px solid var(--red-primary);
   padding: 14px 18px;
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
   font-size: 0.88rem;
-  color: #e0f2fe;
+  color: #f1f5f9;
   margin-top: 20px;
 }
 
@@ -315,7 +317,7 @@
 
 .bank-table td {
   padding: 14px 18px;
-  border-bottom: 1px solid rgba(35, 53, 96, 0.5);
+  border-bottom: 1px solid rgba(38, 38, 51, 0.6);
   font-size: 0.9rem;
 }
 

@@ -1,37 +1,37 @@
 /* ==========================================================================
-   IRONVAULT HEIST – COMMON STYLES
-   Dark Navy / Gold Cyber-Vault Aesthetic
+   IRONVAULT HEIST – MONEY HEIST BLACK & RED THEME (common.css)
+   Bella Ciao / Royal Mint / Salvador Dali Mask Aesthetic
    ========================================================================== */
 
 :root {
-  --bg-primary: #080e1e;
-  --bg-secondary: #0d1730;
-  --bg-card: #121e3d;
-  --bg-card-hover: #17264d;
-  --bg-input: #0a1329;
+  --bg-primary: #0a0a0c;
+  --bg-secondary: #121216;
+  --bg-card: #16161d;
+  --bg-card-hover: #1e1e27;
+  --bg-input: #0e0e12;
   
-  --gold-primary: #d4af37;
-  --gold-light: #f3d46f;
-  --gold-dark: #aa8620;
-  --gold-gradient: linear-gradient(135deg, #f3d46f 0%, #d4af37 50%, #997517 100%);
+  /* Money Heist Red Palette */
+  --red-primary: #e50914;
+  --red-light: #ff3344;
+  --red-dark: #99000a;
+  --red-gradient: linear-gradient(135deg, #ff3344 0%, #e50914 50%, #8b0008 100%);
+  --red-glow: 0 0 20px rgba(229, 9, 20, 0.45);
   
-  --text-main: #e2e8f0;
+  --text-main: #f1f5f9;
   --text-muted: #94a3b8;
-  --text-gold: #f3d46f;
+  --text-red: #ff3344;
   
-  --border-color: #233560;
-  --border-gold: rgba(212, 175, 55, 0.4);
+  --border-color: #262633;
+  --border-red: rgba(229, 9, 20, 0.45);
   
   --accent-cyan: #38bdf8;
   --accent-green: #10b981;
-  --accent-red: #ef4444;
-  --accent-red-glow: rgba(239, 68, 68, 0.3);
+  --accent-red: #e50914;
   
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   
-  --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.5);
-  --shadow-gold: 0 0 20px rgba(212, 175, 55, 0.25);
+  --shadow-card: 0 8px 30px rgba(0, 0, 0, 0.7);
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
@@ -53,7 +53,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Subtle background grid pattern */
+/* Subtle background red mesh pattern */
 body::before {
   content: "";
   position: fixed;
@@ -62,9 +62,9 @@ body::before {
   width: 100%;
   height: 100%;
   background-image: 
-    radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.08) 0%, transparent 60%),
-    linear-gradient(rgba(35, 53, 96, 0.15) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(35, 53, 96, 0.15) 1px, transparent 1px);
+    radial-gradient(circle at 50% 0%, rgba(229, 9, 20, 0.12) 0%, transparent 60%),
+    linear-gradient(rgba(229, 9, 20, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(229, 9, 20, 0.04) 1px, transparent 1px);
   background-size: 100% 100%, 40px 40px, 40px 40px;
   pointer-events: none;
   z-index: 0;
@@ -80,12 +80,13 @@ body::before {
 
 /* Header & Brand */
 .site-header {
-  border-bottom: 1px solid var(--border-color);
-  background: rgba(8, 14, 30, 0.85);
+  border-bottom: 2px solid var(--red-primary);
+  background: rgba(10, 10, 12, 0.92);
   backdrop-filter: blur(12px);
   position: sticky;
   top: 0;
   z-index: 100;
+  box-shadow: 0 4px 20px rgba(229, 9, 20, 0.2);
 }
 
 .header-inner {
@@ -103,33 +104,35 @@ body::before {
 }
 
 .brand-icon {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: var(--radius-sm);
-  background: var(--gold-gradient);
+  background: var(--red-gradient);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #080e1e;
+  color: #fff;
   font-weight: 900;
-  font-size: 20px;
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+  font-size: 22px;
+  box-shadow: var(--red-glow);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .brand-text h1 {
-  font-size: 1.25rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: #ffffff;
   text-transform: uppercase;
 }
 
 .brand-text span {
   font-size: 0.75rem;
-  color: var(--gold-light);
+  color: var(--red-light);
   letter-spacing: 2px;
   text-transform: uppercase;
   font-family: var(--font-mono);
+  font-weight: 700;
 }
 
 /* Button Styles */
@@ -141,58 +144,86 @@ body::before {
   padding: 10px 20px;
   border-radius: var(--radius-sm);
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
   text-decoration: none;
   border: 1px solid transparent;
   font-family: inherit;
+  letter-spacing: 0.5px;
+}
+
+.btn-red {
+  background: var(--red-gradient);
+  color: #fff;
+  border: 1px solid var(--red-light);
+  box-shadow: 0 4px 15px rgba(229, 9, 20, 0.35);
+}
+
+.btn-red:hover {
+  background: #ff3344;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(229, 9, 20, 0.55);
 }
 
 .btn-gold {
-  background: var(--gold-gradient);
-  color: #080e1e;
-  border: 1px solid var(--gold-light);
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
+  /* Alias to maintain compatibility */
+  background: var(--red-gradient);
+  color: #fff;
+  border: 1px solid var(--red-light);
+  box-shadow: 0 4px 15px rgba(229, 9, 20, 0.35);
 }
 
 .btn-gold:hover {
-  background: #f3d46f;
+  background: #ff3344;
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+  box-shadow: 0 6px 22px rgba(229, 9, 20, 0.55);
+}
+
+.btn-outline-red {
+  background: transparent;
+  color: var(--red-light);
+  border: 1px solid var(--red-primary);
+}
+
+.btn-outline-red:hover {
+  background: rgba(229, 9, 20, 0.15);
+  border-color: #ff3344;
+  color: #fff;
 }
 
 .btn-outline-gold {
+  /* Alias */
   background: transparent;
-  color: var(--gold-light);
-  border: 1px solid var(--gold-primary);
+  color: var(--red-light);
+  border: 1px solid var(--red-primary);
 }
 
 .btn-outline-gold:hover {
-  background: rgba(212, 175, 55, 0.1);
-  border-color: #fff;
+  background: rgba(229, 9, 20, 0.15);
+  border-color: #ff3344;
   color: #fff;
 }
 
 .btn-secondary {
-  background: #1e293b;
+  background: #1a1a22;
   color: var(--text-main);
   border: 1px solid var(--border-color);
 }
 
 .btn-secondary:hover {
-  background: #334155;
+  background: #252533;
   color: #fff;
 }
 
 .btn-danger {
-  background: var(--accent-red);
+  background: #b91c1c;
   color: #fff;
 }
 
 .btn-danger:hover {
   background: #dc2626;
-  box-shadow: 0 0 15px var(--accent-red-glow);
+  box-shadow: var(--red-glow);
 }
 
 .btn:disabled {
@@ -210,9 +241,9 @@ body::before {
 .form-label {
   display: block;
   font-size: 0.85rem;
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: 6px;
-  color: var(--text-muted);
+  color: #cbd5e1;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -231,8 +262,8 @@ body::before {
 
 .form-input:focus {
   outline: none;
-  border-color: var(--gold-primary);
-  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+  border-color: var(--red-primary);
+  box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.25);
 }
 
 .form-input.code-mono {
@@ -256,22 +287,23 @@ body::before {
   font-family: var(--font-mono);
 }
 
+.badge-red {
+  background: rgba(229, 9, 20, 0.18);
+  color: #ff4d5a;
+  border: 1px solid var(--border-red);
+}
+
 .badge-gold {
-  background: rgba(212, 175, 55, 0.15);
-  color: var(--gold-light);
-  border: 1px solid var(--border-gold);
+  /* Alias */
+  background: rgba(229, 9, 20, 0.18);
+  color: #ff4d5a;
+  border: 1px solid var(--border-red);
 }
 
 .badge-green {
   background: rgba(16, 185, 129, 0.15);
   color: #34d399;
   border: 1px solid rgba(16, 185, 129, 0.3);
-}
-
-.badge-red {
-  background: rgba(239, 68, 68, 0.15);
-  color: #f87171;
-  border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
 .badge-blue {
@@ -284,7 +316,7 @@ body::before {
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(4, 8, 18, 0.85);
+  background: rgba(6, 6, 8, 0.88);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
@@ -303,8 +335,8 @@ body::before {
 
 .modal-dialog {
   background: var(--bg-card);
-  border: 1px solid var(--border-gold);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), var(--shadow-gold);
+  border: 1px solid var(--border-red);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), var(--red-glow);
   border-radius: var(--radius-md);
   width: 100%;
   max-width: 520px;
@@ -328,8 +360,10 @@ body::before {
 
 .modal-title {
   font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--gold-light);
+  font-weight: 800;
+  color: var(--red-light);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .modal-body {
@@ -359,13 +393,13 @@ body::before {
 
 .toast {
   background: var(--bg-card);
-  border-left: 4px solid var(--gold-primary);
+  border-left: 4px solid var(--red-primary);
   border-top: 1px solid var(--border-color);
   border-right: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
   padding: 14px 18px;
   border-radius: var(--radius-sm);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: flex-start;
   gap: 12px;
@@ -374,7 +408,7 @@ body::before {
 }
 
 .toast.toast-error {
-  border-left-color: var(--accent-red);
+  border-left-color: var(--red-primary);
 }
 
 .toast.toast-success {
@@ -382,7 +416,7 @@ body::before {
 }
 
 .toast.toast-warning {
-  border-left-color: var(--gold-light);
+  border-left-color: var(--red-light);
 }
 
 @keyframes slideIn {

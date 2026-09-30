@@ -341,15 +341,14 @@ Because the frontend is plain HTML5/CSS3 with vanilla JS and responsive layouts,
 ## 🎮 Game Rules & Puzzle Guide
 
 ### Core Mechanics
-- **Lives:** 3 lives per player for the round.
-  - Plain incorrect code submissions do **NOT** cost a life.
-  - Hidden **traps** cost **1 life**.
-  - At **0 lives**, the round immediately terminates ("Heist Aborted – Operator Caught").
+- **Zero Penalties Mode:**
+  - **No Hint Penalty:** Hints unlock over time without deducting points (0 penalty).
+  - **No Life Loss Penalties:** Traps provide educational security warnings without terminating the session or docking lives.
 - **Scoring:**
   - Base: **100 points** per puzzle.
-  - Hint Penalty: **-10 points** per hint tier unlocked on that puzzle (minimum score: 40 points).
   - Time Bonus: Up to **+30 points** based on rapid solve time (decays linearly over 10 minutes).
 - **Hints:** 3 tiers per puzzle, unlocked server-side based on elapsed time since the player first visited/opened that puzzle (**3 min**, **6 min**, **9 min**).
+- **Direct Codes (No Encoding):** All challenges reveal the exact plaintext code directly upon bypass (no Base64 decoding or Caesar ciphers required).
 - **Rate Limit:** 10 code submissions per minute per player. Exceeding triggers HTTP 429 with retry cooldown.
 
 ---
@@ -364,10 +363,9 @@ Because the frontend is plain HTML5/CSS3 with vanilla JS and responsive layouts,
   - A server filter strips `--`, `;`, and `/*` from input and warns: *"Suspicious characters removed for your security."* This blocks `admin'--`.
   - Submitting tautologies from the `1=1` family (e.g. `' OR '1'='1` or `' OR 1=1`) satisfies the query without requiring comment syntax.
   - Decoy condition `' OR '2'='2` is caught by logic and fails.
-  - **Trap:** Clicking *"Emergency Teller Access (Supervisor Override)"* and submitting any override code triggers an alarm and costs **1 life**!
-- **Flag Reveal:** Successful injection logs into Sarah's account and displays:  
-  `Welcome, Sarah (Head Teller). Audit memo: SVZCLUxFVkVMMS03UTI=`
-- **Decoding:** Base64 decode `SVZCLUxFVkVMMS03UTI=` &rarr; `IVB-LEVEL1-7Q2`.
+  - **Trap:** Clicking *"Emergency Teller Access (Supervisor Override)"* and submitting any override code triggers a security alarm warning (zero penalty).
+- **Flag Reveal:** Successful injection logs into Sarah's account and directly displays:  
+  `Welcome, Sarah (Head Teller). Vault Authorization Code: IVB-LEVEL1-7Q2`
 - **Teaching Panel:**  
   *"Real fix: parameterized queries (prepared statements), never concatenate user input into SQL, and validate/allowlist input instead of blacklisting characters."*
 
@@ -385,10 +383,9 @@ Because the frontend is plain HTML5/CSS3 with vanilla JS and responsive layouts,
     1. Delete or remove `<div class="fraud-shield">`.
     2. Remove the `disabled` attribute from the `<button id="transferBtn">`.
     3. Click *"Execute Reserve Transfer"*.
-  - **Trap:** A bright, tempting button labeled *"Quick Bypass: Automated Interface Unlock"* calls a trap handler that costs **1 life** and reloads the page, resetting all DOM edits.
-- **Flag Reveal:** A success modal displays a Caesar-shifted (+3) token:  
-  `LYE-OHYHO2-5N8`
-- **Decoding:** Shift alphabet backward by 3 (L&rarr;I, Y&rarr;V, E&rarr;B, O&rarr;L, H&rarr;E, Y&rarr;V, H&rarr;E, O&rarr;L, N&rarr;K) &rarr; `IVB-LEVEL2-5K8`.
+  - **Trap:** A button labeled *"Quick Bypass: Automated Interface Unlock"* resets DOM edits with a security warning (zero penalty).
+- **Flag Reveal:** A success modal directly displays the authorization code:  
+  `IVB-LEVEL2-5K8`
 - **Teaching Panel:**  
   *"Client-side restrictions are not security. Anything in the browser can be modified; real controls must be enforced on the server."*
 
@@ -403,13 +400,12 @@ Because the frontend is plain HTML5/CSS3 with vanilla JS and responsive layouts,
   - Clicking *"Refresh Balance"* calls `GET /api/balance?acct=1001`.
   - The JSON response body includes:  
     `{ "acct": "1001", "balance": "$4,213.50", "audit_code": "FAKE-000-DECOY" }`
-  - In **Hard Mode** (`HARD_MODE_HEADER=true`), the first click simulates a cache miss and does **not** include the audit header. Clicking "Refresh Balance" a **second time** attaches the header:  
-    `X-Audit-Code: SVZCLUxFVkVMMy0zTTk=`
+  - In **Hard Mode** (`HARD_MODE_HEADER=true`), the first click simulates a cache miss and does **not** include the audit header. Clicking "Refresh Balance" a **second time** attaches the header containing the direct code:  
+    `X-Audit-Code: IVB-LEVEL3-3M9`
   - The response also contains a decoy header `X-Request-Id: <UUID>`.
-  - **Traps (each costs 1 life):**
-    - Submitting `FAKE-000-DECOY` &rarr; *"That's a decoy field. The real code doesn't live in the body."* (Costs 1 life).
-    - Submitting the `X-Request-Id` UUID &rarr; *"That's just a request ID, not an audit code — check the header name again."* (Costs 1 life).
-- **Decoding:** Base64 decode `SVZCLUxFVkVMMy0zTTk=` &rarr; `IVB-LEVEL3-3M9`.
+  - **Traps:**
+    - Submitting `FAKE-000-DECOY` &rarr; *"That's a decoy field! The real code travels in the response header X-Audit-Code."*
+    - Submitting the `X-Request-Id` UUID &rarr; *"That's just a request ID, not the audit code — check header X-Audit-Code."*
 - **Teaching Panel:**  
   *"In real APIs, sensitive metadata should never travel in custom headers either — this puzzle exaggerates it for teaching purposes. The broader lesson: always inspect full HTTP responses, not just what's rendered on the page."*
 
@@ -417,7 +413,4 @@ Because the frontend is plain HTML5/CSS3 with vanilla JS and responsive layouts,
 
 ### Answer Validation Behavior
 - Answers are **case-insensitive** and **trimmed**.
-- If a player submits the raw encoded string (`SVZCLUxFVkVMMS03UTI=`, `LYE-OHYHO2-5N8`, or `SVZCLUxFVkVMMy0zTTk=`):
-  - Treated as a plain incorrect attempt (no life lost).
-  - Explicit warning shown: *"That looks encoded. Decode it first."*
-- Flags and correct answers are stored **exclusively server-side** and are never present in client-side console scripts.
+- Flags and correct answers are stored **exclusively server-side** and are never exposed in client-side console scripts.
