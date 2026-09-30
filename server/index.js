@@ -15,7 +15,11 @@ app.use(cookieParser());
 
 // Static assets (CSS, JS, images)
 const publicDir = path.join(__dirname, '..', 'public');
+
+// Serve static assets at /public and root fallback for static files
 app.use('/public', express.static(publicDir));
+app.use(express.static(publicDir));
+
 if (config.BASE_PATH) {
   app.use(`${config.BASE_PATH}/public`, express.static(publicDir));
 }
@@ -26,8 +30,8 @@ if (config.BASE_PATH) {
 }
 app.use('/api', apiRoutes); // Also mount at /api for flexible direct requests
 
-// Page Routes mounted under BASE_PATH
-if (config.BASE_PATH) {
+// Page Routes
+if (config.BASE_PATH && config.BASE_PATH !== '/') {
   app.use(config.BASE_PATH, pageRoutes);
   
   // Convenient root redirect to BASE_PATH
@@ -35,9 +39,10 @@ if (config.BASE_PATH) {
     const tokenQuery = req.query.token ? `?token=${encodeURIComponent(req.query.token)}` : '';
     res.redirect(`${config.BASE_PATH}${tokenQuery}`);
   });
-} else {
-  app.use('/', pageRoutes);
 }
+
+// Default page routes handler
+app.use('/', pageRoutes);
 
 // Global 404 handler
 app.use((req, res) => {
@@ -71,4 +76,7 @@ if (require.main === module) {
   startServer();
 }
 
-module.exports = { app, startServer };
+// Export the app directly as the module export for Vercel
+module.exports = app;
+module.exports.app = app;
+module.exports.startServer = startServer;
