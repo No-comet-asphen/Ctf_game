@@ -50,6 +50,7 @@ const config = {
       category: "SQL Injection",
       story: "A teller forgot their password. The portal is old — when login fails, it shows you the query it tried to run. Maybe that's useful.",
       code: "IVB-LEVEL1-7Q2",
+      points: 3,
       hints: [
         "What does the debug console show you about the query structure?",
         "The filter blocks -- and ;. Can you make the condition true without a comment?",
@@ -64,6 +65,7 @@ const config = {
       category: "DOM Manipulation",
       story: "The Transfer button is disabled and a transparent overlay blocks the form.",
       code: process.env.PUZZLE_2_CODE || "IVB-LEVEL2-5K8",
+      points: 3,
       hints: [
         "Some elements are being blocked or disabled — inspect the page.",
         "Look at the button's attributes and at what sits on top of the form.",
@@ -78,6 +80,7 @@ const config = {
       category: "HTTP Response Inspection",
       story: "Your dashboard loads your balance fine. But the bank's internal audit code isn't in the page — it travels with the response, not inside it.",
       code: "IVB-LEVEL3-3M9",
+      points: 4,
       decoyBodyCode: "FAKE-000-DECOY",
       hints: [
         "The visible balance data isn't the whole response. What else does a response carry?",

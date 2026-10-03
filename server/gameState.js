@@ -205,7 +205,7 @@ function markPuzzleSolved(playerId, puzzleId) {
 
   puzzle.solved = true;
   puzzle.solvedAt = Date.now();
-  const pointsEarned = calculatePuzzleScore(puzzle);
+  const pointsEarned = config.PUZZLES[pId].points;
   puzzle.score = pointsEarned;
   state.score += pointsEarned;
 

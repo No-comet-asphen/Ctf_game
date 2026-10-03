@@ -409,6 +409,9 @@ router.get('/balance', (req, res) => {
   // Header only appears on the SECOND click/request per session (simulated cache miss)
   const shouldSendAuditHeader = !config.HARD_MODE_HEADER || requestCount >= 2;
 
+  // Ensure client can read custom header and prevent caching on Vercel
+  res.setHeader('Cache-Control', 'no-store, private, max-age=0');
+  res.setHeader('Access-Control-Expose-Headers', 'X-Audit-Code');
   if (shouldSendAuditHeader) {
     // Direct code: IVB-LEVEL3-3M9 (No encoding)
     res.setHeader('X-Audit-Code', config.PUZZLES[3].code);
